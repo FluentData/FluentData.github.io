@@ -1,11 +1,31 @@
-<html>
+---
+layout: default
+---
 
-<head>
-  <title>Fluent Data LLC</title>
-</head>
+  <div class = "ad-group">
+    <div style = "width: 32%; background: green; display: inline-block; height: 200px;">
+      <i class = "fa fa-desktop"></i>
+      <h3>Training</h3>
+      <p>Lorem ipsum dolar sit amet...</p>
+      <a href = "training.html" class = "btn">Learn More</a>
+    </div>
+    <div style = "width: 32%; background: red; display: inline-block; height: 200px;"></div>
+    <div style = "width: 32%; background: blue; display: inline-block; height: 200px;"></div>
+  </div>
 
-<body>
-  <h1>Hello World</h1>
-</body>
+<!-- Posts -->
+<ul id="posts">
 
-</html>
+
+
+	{% for post in paginator.posts %}
+
+	  <li class="post">
+	  	<h2><a href="{% if site.baseurl == "/" %}{{ post.url }}{% else %}{{ post.url | prepend: site.baseurl }}{% endif %}">{{ post.title }}</a></h2>
+	  	<time datetime="{{ post.date | date_to_xmlschema }}" class="by-line">{{ post.date | date_to_string }}</time>
+	  	<p>{{ post.content | strip_html | truncatewords:50 }}</p>
+	  </li>
+
+    {% endfor %}
+
+</ul>
